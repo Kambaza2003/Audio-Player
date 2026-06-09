@@ -1,10 +1,19 @@
 let progress = document.getElementById("progress");
 let audio = document.getElementById("audio");
 let ctrlIcon = document.getElementById("ctrlIcon");
+let currentTimeDisplay = document.getElementById("currentTime");
+let remainingTimeDisplay = document.getElementById("remainingTime");
+
+function formatTime(seconds) {
+    let mins = Math.floor(seconds / 60);
+    let secs = Math.floor(seconds % 60);
+    return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+}
 
 audio.onloadedmetadata = function () {
     progress.max = audio.duration;
     progress.value = audio.currentTime;
+    remainingTimeDisplay.textContent = formatTime(audio.duration);
 }
 
 function playPause() {
@@ -28,8 +37,10 @@ function playPause() {
 
 }
 
-audio.ontimeupdate = function(){
+audio.ontimeupdate =  function(){
     progress.value = audio.currentTime;
+    currentTimeDisplay.textContent = formatTime(audio.currentTime);
+    remainingTimeDisplay.textContent = formatTime(audio.duration - audio.currentTime);
 }
 
 progress.onchange = function () {

@@ -25,7 +25,11 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
             <audio id="audio">
                 <source src="Hidima Wa Addinin Allah-1.mp3" type="audio/mpeg">
             </audio>
-            <input type="range" value="0" id="progress">
+            <div class="time-container">
+                <span id="currentTime">0:00</span>
+                <input type="range" value="0" id="progress">
+                <span id="remainingTime">0:00</span>
+            </div>
 
             <div class="control">
                 <div><i class="fa-solid fa-backward"></i></div>
